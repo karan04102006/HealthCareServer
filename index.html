@@ -1,270 +1,98 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <title>Mini Cloud</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-
-<style>
-/* --- Reset and base --- */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f5f7fa;
-  color: #333;
-  line-height: 1.5;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-}
-
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #4a90e2;
-  text-align: center;
-  animation: fadeInDown 0.8s ease forwards;
-}
-
-h3 {
-  margin: 30px 0 10px;
-  color: #555;
-  text-align: center;
-}
-
-/* --- Form --- */
-form#uploadForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-  animation: fadeInUp 0.8s ease forwards;
-}
-
-form#uploadForm input[type=file] {
-  padding: 10px;
-  border: 2px dashed #4a90e2;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: border-color 0.3s;
-}
-
-form#uploadForm input[type=file]:hover {
-  border-color: #357ab8;
-}
-
-form#uploadForm button {
-  padding: 10px 20px;
-  background: #4a90e2;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s, transform 0.2s;
-}
-
-form#uploadForm button:hover {
-  background: #357ab8;
-  transform: translateY(-2px);
-}
-
-/* --- File list --- */
-ul#fileList {
-  list-style: none;
-  width: 100%;
-  max-width: 600px;
-}
-
-ul#fileList li {
-  background: #fff;
-  padding: 15px 20px;
-  margin-bottom: 12px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-ul#fileList li:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-
-ul#fileList .meta {
-  display: flex;
-  flex-direction: column;
-}
-
-ul#fileList .meta strong {
-  font-size: 1rem;
-  color: #333;
-}
-
-ul#fileList .meta small {
-  color: #888;
-  font-size: 0.85rem;
-}
-
-ul#fileList div a {
-  text-decoration: none;
-  color: #4a90e2;
-  font-weight: 500;
-  margin-right: 10px;
-  transition: color 0.3s;
-}
-
-ul#fileList div a:hover {
-  color: #357ab8;
-}
-
-ul#fileList div button {
-  padding: 5px 10px;
-  background: #e74c3c;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-}
-
-ul#fileList div button:hover {
-  background: #c0392b;
-  transform: translateY(-2px);
-}
-
-/* --- Animations --- */
-@keyframes fadeInDown {
-  0% { opacity: 0; transform: translateY(-20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-/* --- Responsive --- */
-@media(max-width: 600px){
-  form#uploadForm {
-    width: 100%;
-  }
-
-  ul#fileList li {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  ul#fileList div {
-    display: flex;
-    gap: 10px;
-  }
-}
-</style>
-
-
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Segoe UI,Tahoma,Verdana,sans-serif;background:#f5f7fa;color:#333;
+         display:flex;flex-direction:column;align-items:center;padding:20px;min-height:100vh}
+    h1{font-size:2.5rem;margin-bottom:20px;color:#4a90e2;text-align:center}
+    h3{margin:30px 0 10px;color:#555}
+    form#uploadForm{display:flex;flex-direction:column;gap:10px;align-items:center;margin-bottom:20px}
+    form#uploadForm input[type=file]{padding:10px;border:2px dashed #4a90e2;border-radius:8px;cursor:pointer}
+    form#uploadForm button{padding:10px 20px;background:#4a90e2;color:#fff;border:none;border-radius:6px;
+                           font-weight:bold;cursor:pointer;transition:background .3s}
+    form#uploadForm button:hover{background:#3b7bc6}
+    ul#fileList{list-style:none;width:100%;max-width:600px}
+    ul#fileList li{background:#fff;padding:15px 20px;margin-bottom:12px;border-radius:10px;
+                   display:flex;justify-content:space-between;align-items:center;
+                   box-shadow:0 4px 10px rgba(0,0,0,0.05)}
+    ul#fileList .meta{display:flex;flex-direction:column}
+    .no-files{color:#666;padding:10px;text-align:center}
+    @media(max-width:600px){
+      ul#fileList li{flex-direction:column;align-items:flex-start;gap:10px}
+      ul#fileList div{display:flex;gap:10px}
+    }
+  </style>
 </head>
 <body>
   <h1>Mini Cloud</h1>
 
-  <form id="uploadForm" class="row">
-    <input type="file" name="file" required />
+  <form id="uploadForm" autocomplete="off">
+    <input type="file" name="file" required>
     <button type="submit">Upload</button>
   </form>
 
   <h3>Files</h3>
   <ul id="fileList"></ul>
 
-  <script>
-    const API = '';
-    const uploadForm = document.getElementById('uploadForm');
-    const fileList = document.getElementById('fileList');
+<script>
+const API = '';
 
-    uploadForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const input = uploadForm.querySelector('input[type=file]');
-      if (!input.files.length) return alert('Choose a file');
-      const fd = new FormData();
-      fd.append('file', input.files[0]);
-      const btn = uploadForm.querySelector('button');
-      btn.disabled = true;
-      btn.textContent = 'Uploading...';
-      try {
-        const res = await fetch('/upload', { method: 'POST', body: fd });
-        if (!res.ok) throw new Error('Upload failed');
-        input.value = '';
-        loadFiles();
-      } catch (err) {
-        alert('Upload error: ' + err.message);
-      } finally {
-        btn.disabled = false;
-        btn.textContent = 'Upload';
-      }
+const uploadForm = document.getElementById('uploadForm');
+const fileList = document.getElementById('fileList');
+
+uploadForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const input = uploadForm.querySelector('input[type=file]');
+  if (!input.files.length) return alert('Choose a file!');
+  const fd = new FormData(); fd.append('file', input.files[0]);
+  const btn = uploadForm.querySelector('button');
+  const txt = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Uploading...';
+  try {
+    const r = await fetch(API+'/upload',{method:'POST',body:fd});
+    if(!r.ok) throw new Error('Upload failed');
+    input.value=''; await loadFiles();
+  } catch(err){ alert(err.message); }
+  finally{ btn.disabled=false; btn.textContent=txt; }
+});
+
+async function loadFiles(){
+  try{
+    const r=await fetch(API+'/files');
+    if(!r.ok) throw new Error('Cannot load files');
+    const files=await r.json();
+    fileList.innerHTML='';
+    if(!files.length) return fileList.innerHTML='<li class="no-files">No files yet</li>';
+    files.forEach(f=>{
+      const li=document.createElement('li');
+      const meta=document.createElement('div'); meta.className='meta';
+      meta.innerHTML=`<strong>${escape(f.filename||'')}</strong>
+        <small>${f.contentType||'unknown'} · ${size(f.length)} · ${new Date(f.uploadDate).toLocaleString()}</small>`;
+      const act=document.createElement('div');
+      const a=document.createElement('a');
+      a.textContent='View'; a.target='_blank'; a.href='/files/'+f._id;
+      const d=document.createElement('button');
+      d.textContent='Delete'; d.onclick=()=>delFile(f._id);
+      act.append(a,d); li.append(meta,act); fileList.append(li);
     });
+  }catch(e){fileList.innerHTML='<li class="no-files">Error loading files</li>';}
+}
 
-    function formatBytes(bytes) {
-      if (bytes === 0) return '0 B';
-      const k = 1024;
-      const sizes = ['B','KB','MB','GB','TB'];
-      const i = Math.floor(Math.log(bytes) / Math.log(k));
-      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-    }
+function size(b){if(b==0)return'0 B';const k=1024,s=['B','KB','MB','GB'];const i=Math.floor(Math.log(b)/Math.log(k));
+ return (b/Math.pow(k,i)).toFixed(2)+' '+s[i];}
 
-    async function loadFiles() {
-      try {
-        const res = await fetch('/files');
-        const files = await res.json();
-        fileList.innerHTML = '';
-        if (!files.length) fileList.innerHTML = '<li><small>No files yet</small></li>';
-        files.forEach(f => {
-          const li = document.createElement('li');
-          const meta = document.createElement('div');
-          meta.className = 'meta';
-          meta.innerHTML = `<strong>${escapeHtml(f.originalname || f.filename)}</strong>
-                            <small>${formatBytes(f.length || 0)} · ${new Date(f.uploadDate).toLocaleString()}</small>`;
-          const actions = document.createElement('div');
-          actions.innerHTML = `
-            <a href="/files/${f._id}" target="_blank">View</a>
-            <button style="margin-left:10px">Delete</button>
-          `;
-          actions.querySelector('button').addEventListener('click', () => deleteFile(f._id));
-          li.appendChild(meta);
-          li.appendChild(actions);
-          fileList.appendChild(li);
-        });
-      } catch (err) {
-        fileList.innerHTML = '<li><small>upload done</small></li>';
-      }
-    }
+async function delFile(id){
+  if(!confirm('Delete this file?'))return;
+  await fetch('/files/'+id,{method:'DELETE'}); loadFiles();
+}
 
-    async function deleteFile(id) {
-      if (!confirm('Delete this file?')) return;
-      try {
-        const res = await fetch('/files/' + id, { method: 'DELETE' });
-        const data = await res.json();
-        if (res.ok) loadFiles();
-        else alert('Delete failed: ' + (data.error || 'unknown'));
-      } catch (err) {
-        alert('Delete error: ' + err.message);
-      }
-    }
+function escape(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 
-    // simple html escape
-    function escapeHtml(s) { return s ? s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])) : s; }
-
-    // initial load
-    loadFiles();
-  </script>
+loadFiles();
+</script>
 </body>
 </html>
