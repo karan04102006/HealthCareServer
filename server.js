@@ -13,7 +13,6 @@
 // app.use(express.static(path.join(__dirname, 'public')));
 
 // // Change this if you use Atlas:
-// // e.g. export MONGO_URI="mongodb+srv://user:pass@cluster0.mongodb.net/filedb?retryWrites=true&w=majority"
 // const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/filedb';
 
 // // Connect
@@ -239,3 +238,4 @@ app.delete('/files/:id', async (req, res) => {
 // Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+
